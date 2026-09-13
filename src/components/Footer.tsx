@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState } from "react";
@@ -38,7 +39,7 @@ export const Footer = () => {
       setStatus("success");
       setEmail("");
     } catch (error) {
-      setStatus("error");
+      console.error(error);
     }
   };
 

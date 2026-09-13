@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { config } from "@/config";
 
 export const Navbar = () => {
@@ -10,7 +9,7 @@ export const Navbar = () => {
 
   // Safely extract config properties inside the client runtime component execution block
   const title = config?.title || "Blog";
-  const logoUrl = config?.logoUrl || "/bc-logo.png"; // Falls back directly to public/bc-logo.png if config is empty
+  // const logoUrl = config?.logoUrl || "/bc-logo.png"; // Falls back directly to public/bc-logo.png if config is empty
 
   const navLinks = [
     { label: "Home", href: "/" },
