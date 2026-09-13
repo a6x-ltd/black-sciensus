@@ -1,5 +1,6 @@
 export const revalidate = 60; // 1 minute
 
+import Image from "next/image";
 import { BlogPostList } from "@/components/BlogPostList";
 import { PostPagination } from "@/components/PostPagination";
 import { getOgImageUrl } from "@/lib/ogImage";
@@ -36,7 +37,23 @@ export default async function Page(
 
   return (
     <>
-      <FullWidthHeader title={title} description={description} />
+      <div className="container mx-auto max-w-6xl px-4">
+        <div className="flex justify-center pt-8 pb-0">
+          <Image
+            src="/bc-logo.png"
+            alt={`${title} logo`}
+            width={200}
+            height={200}
+            className="rounded-full object-cover"
+            priority
+          />
+        </div>
+      </div>
+      <FullWidthHeader
+        title={title}
+        description={description}
+        className="pt-0 lg:pt-0 pb-8 lg:pb-12"
+      />
       <div className="container mx-auto max-w-6xl">
         <FilterBar active="latest" className="my-8" />
         <BlogPostList posts={result.posts} />

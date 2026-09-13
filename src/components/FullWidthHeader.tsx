@@ -21,12 +21,13 @@ export const FullWidthHeader: FunctionComponent<{
   description: string;
   breadcrumb?: BreadcrumbProps[];
   className?: string;
-}> = ({ title, description, breadcrumb, className }) => {
+  titleClassName?: string;
+}> = ({ title, description, breadcrumb, className, titleClassName }) => {
   return (
     <div
       className={cn(
         "pb-8 lg:pb-16 pt-4",
-        className // Replace className with additional styling ie "bg-gradient-to-r from-teal-50 to-blue-50"
+        className
       )}
     >
       <div className="container mx-auto px-4 max-w-6xl">
@@ -57,8 +58,8 @@ export const FullWidthHeader: FunctionComponent<{
         )}
         <div
           className={cn(
-            "prose lg:prose-lg text-balance mx-auto text-center px-4 text-inherit",
-            breadcrumb ? "pt-16 lg:pt-18" : "pt-16 lg:pt-28"
+            "prose lg:prose-lg text-balance mx-auto text-center px-4 text-inherit pt-4 lg:pt-6",
+            titleClassName
           )}
         >
           <h1 className="text-inherit">{title}</h1>

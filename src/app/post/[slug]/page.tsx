@@ -1,4 +1,4 @@
-export const revalidate = 60; // 1 minute'
+export const revalidate = 60; // 1 minute
 
 import type { Metadata } from "next";
 import { wisp } from "@/lib/wisp";
@@ -58,6 +58,25 @@ export default async function BlogPost(
 
   const { title, publishedAt, updatedAt, author, image } = result.post;
 
+  // Split multiple authors if the author name contains commas (e.g., "John Doe, Jane Smith")
+  const authorNames = author && author.name 
+    ? author.name.split(",").map(name => name.trim()) 
+    : [];
+
+  // Structure the Schema.org JSON-LD author property to properly reflect an array of Person objects
+  const schemaAuthors = authorNames.length > 1 
+    ? authorNames.map(name => ({
+        "@type": "Person" as const,
+        name: name,
+        // Optional fallback: use the primary Wisp author image for all, or skip if unique pictures aren't available
+        image: author.image ?? undefined,
+      }))
+    : {
+        "@type": "Person" as const,
+        name: author?.name ?? undefined,
+        image: author?.image ?? undefined,
+      };
+
   const jsonLd: WithContext<BlogPosting> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -65,11 +84,7 @@ export default async function BlogPost(
     image: image ? image : undefined,
     datePublished: publishedAt ? publishedAt.toString() : undefined,
     dateModified: updatedAt.toString(),
-    author: {
-      "@type": "Person",
-      name: author.name ?? undefined,
-      image: author.image ?? undefined,
-    },
+    author: schemaAuthors,
     publisher: {
       "@type": "Organization",
       name: config.organization,
@@ -87,6 +102,7 @@ export default async function BlogPost(
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {/* Passing the original post object. You can now safe-split author.name inside <BlogContent /> to render both names in the UI */}
       <BlogContent post={result.post} relatedPosts={related.posts} />
     </>
   );
