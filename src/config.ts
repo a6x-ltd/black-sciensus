@@ -36,13 +36,13 @@ const categories: Category[] = [
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 export const config = {
-  blogId: process.env.NEXT_PUBLIC_BLOG_ID || "clvlugru90000o4g8ahxp069s",
+  blogId: process.env.NEXT_PUBLIC_BLOG_ID || "a41e3933-a7ef-4400-842d-32ebae7e73b8",
   baseUrl,
   logoUrl: urlJoin(baseUrl, "bc-logo.png"),
-  organization: process.env.NEXT_PUBLIC_BLOG_ORGANIZATION || "Example Org",
-  title: process.env.NEXT_PUBLIC_BLOG_TITLE || "Launched",
+  organization: process.env.NEXT_PUBLIC_BLOG_ORGANIZATION || "Black Sciensus CIC",
+  title: process.env.NEXT_PUBLIC_BLOG_TITLE || "Black Sciensus",
   description:
     process.env.NEXT_PUBLIC_BLOG_DESCRIPTION ||
-    "Let's build something amazing!",
+    "Black & African Health, Empowering Through Knowledge",
   categories,
 };
