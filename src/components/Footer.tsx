@@ -149,7 +149,7 @@ export const Footer = () => {
           <div className="font-medium tracking-tight">
             Powered by{" "}
             <Link 
-              href="https://a6x.CO"
+              href="https://a6x.co"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary underline underline-offset-4 decoration-muted-foreground/30 hover:decoration-primary font-semibold transition"
